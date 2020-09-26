@@ -18,7 +18,7 @@ steps:
   displayName: 'install flask'
 
 - script: |
-   sudo python3.6 counter-service.py
+   sudo nohup python3.6 app/counter-service.py &
    
   displayName: 'running counter'
 
