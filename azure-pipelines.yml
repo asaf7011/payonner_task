@@ -25,6 +25,6 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'connection1'
-    repository: 'asaf/payoneer'
+    repository: 'asaf7011/payoneer_task'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
