@@ -28,3 +28,8 @@ steps:
     repository: 'asaf7011/payoneer_task'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'payoneer_artifact'
+    publishLocation: 'Container'
