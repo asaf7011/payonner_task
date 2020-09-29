@@ -28,6 +28,11 @@ steps:
     repository: 'asaf7011/payoneer_task'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
 - task: PublishBuildArtifacts@1
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)'
