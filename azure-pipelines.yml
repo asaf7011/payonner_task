@@ -1,0 +1,40 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+steps:
+- task: UsePythonVersion@0
+  displayName: 'Use Python 3.x'
+
+- script: |
+   sudo pip3 install flask
+   
+  displayName: 'install flask'
+
+- script: |
+   sudo nohup python3.6 app/counter-service.py &
+   
+  displayName: 'running counter'
+
+- task: Docker@2
+  inputs:
+    containerRegistry: 'connection1'
+    repository: 'asaf7011/payoneer_task'
+    command: 'buildAndPush'
+    Dockerfile: '**/Dockerfile'
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(system.defaultworkingdirectory)'
+    Contents: '**'
+    TargetFolder: '$(build.artifactstagingdirectory)'
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
