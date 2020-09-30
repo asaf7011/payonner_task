@@ -4,4 +4,4 @@ Payonner project:
         The first ,app, containes the counter_service.py file that runs the web app.
         The second ,send_post_request, containes the send.py that test our counter service by sending POST requests.
 3. Dockerfile, containes all requirements for the docker container.
-4. Release- create Payoneer release pipeline.
+4. Release- create Payoneer release pipeline for production.
